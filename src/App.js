@@ -88,6 +88,7 @@ function App() {
               <p>{total}</p>
               <div>
                 <button onClick = {() => calculator()} >=</button>
+                <button onClick={() => {setTotalNumber(0)}}>Clear</button>
               </div>
             </div>
     </div>
