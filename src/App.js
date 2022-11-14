@@ -3,29 +3,45 @@ import React, {useState} from "react"
 
 
 function App() { 
-  const [firstNum, setFirstNum] = useState(0)
+  const [firstNumber, setFirstNum] = useState(0)
   const [sign, setSign] = useState('+')
-  const [secondNum, setSecondNum] = useState(0)
+  const [secondNumber, setSecondNum] = useState(0)
+  const [total , setTotalNumber] = useState(0)
 
   
   
   function setFirstNumber (number) {
-    firstNum = setFirstNum(number)
+    firstNumber = setFirstNum(number)
+    return firstNumber
   }
   
   function setSecondNumber (number) {
-    secondNum = setSecondNum(number)
+    secondNumber = setSecondNum(number)
+    return secondNumber
   }
 
   function settingSign ( character) {
     sign = setSign(character)
+    return sign
+  }
+
+  function calculator() {
+    if (sign === '+') {
+      setTotalNumber(firstNumber + secondNumber)
+    } else if (sign === '-') {
+      setTotalNumber(firstNumber - secondNumber)
+    } else if (sign === '*') {
+      setTotalNumber(firstNumber * secondNumber)
+    } else if (sign === '÷') {
+      setTotalNumber(firstNumber / secondNumber)
+    }
   }
 
     return (
       <div className="calculator">
 
             <div className="panel">
-              <p>{firstNum}</p>
+              <p>{firstNumber}</p>
               <div className="numbers" >
                 <button onClick={() => setFirstNumber(1)}>1</button>
                 <button onClick={() => setFirstNumber(2)}>2</button>
@@ -52,7 +68,7 @@ function App() {
             </div>
     
             <div className="panel">
-              <p>{secondNum}</p>
+              <p>{secondNumber}</p>
               <div className="numbers">
                 <button onClick={() => {setSecondNumber(1)}}>1</button>
                 <button onClick={() => {setSecondNumber(2)}}>2</button>
@@ -69,9 +85,9 @@ function App() {
             </div>
 
             <div className="panel answer">
-              <p>0</p>
+              <p>{total}</p>
               <div>
-                <button>=</button>
+                <button onClick = {() => calculator()} >=</button>
               </div>
             </div>
     </div>
