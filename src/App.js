@@ -1,85 +1,79 @@
 import "./App.css"
 import React, {useState} from "react"
 
+
 function App() { 
+  const [firstNum, setFirstNum] = useState(0)
+  const [sign, setSign] = useState('+')
+  const [secondNum, setSecondNum] = useState(0)
 
-const [calc, setCalc] = useState("");
-const [result, setResult] = useState("");
-
-const ops = ['+', '-', '*', '÷', ];
-
-const updateCalc = (value) => {
-  if(
-    ops.includes(value) && calc === '' ||
-    ops.includes(value) && ops.includes(calc.slice(-1))
-  ){
-    return
+  
+  
+  function setFirstNumber (number) {
+    firstNum = setFirstNum(number)
   }
-  setCalc(calc + value);
-
-  if(!ops.includes(value)){
-    setResult(eval(calc + value).toString())
-  }
-}
-
-const calculate = () => {
-  setCalc(eval(calc).toString());
-}
-
-
-const createDigits = () => {
-  const digits = [];
-
-  for (let i = 1; i<10; i++){
-    digits.push(
-      <button  
-      onClick={() => updateCalc(i.toString())} key = {i}> 
-      {i} 
-      </button>
-    )
+  
+  function setSecondNumber (number) {
+    secondNum = setSecondNum(number)
   }
 
-  return digits
-}
+  function settingSign ( character) {
+    sign = setSign(character)
+  }
 
-  return (
-    <div className="calculator">
-        <div className="panel">
-        <p> {calc || "0"} </p>
-          <div className="numbers" >
-            { createDigits() }
-            <button onClick={ () => updateCalc('0')}>0</button>
-            <button onClick={() => updateCalc('.')}>.</button>
-            <button>Clear</button>
-          </div>
-        </div>
+    return (
+      <div className="calculator">
 
-        <div className="panel">
-          <p></p>
-          <div className="numbers">
-            <button onClick={() => updateCalc('+')}>+</button>
-            <button onClick={() => updateCalc('-')}>-</button>
-            <button onClick={() => updateCalc('*')}>*</button>
-            <button onClick={() => updateCalc('/')}>÷</button>
-          </div>
-        </div>
+            <div className="panel">
+              <p>{firstNum}</p>
+              <div className="numbers" >
+                <button onClick={() => setFirstNumber(1)}>1</button>
+                <button onClick={() => setFirstNumber(2)}>2</button>
+                <button onClick={() => setFirstNumber(3)}>3</button>
+                <button onClick={() => setFirstNumber(4)}>4</button>
+                <button onClick={() => setFirstNumber(5)}>5</button>
+                <button onClick={() => setFirstNumber(6)}>6</button>
+                <button onClick={() => setFirstNumber(7)}>7</button>
+                <button onClick={() => setFirstNumber(8)}>8</button>
+                <button onClick={() => setFirstNumber(9)}>9</button>
+                <button onClick={() => setFirstNumber(0)}>0</button>
+                <button onClick={() => setFirstNumber(0)}>Clear</button>
+              </div>
+            </div>
+    
+            <div className="panel">
+              <p>{sign}</p>
+              <div className="numbers">
+                <button onClick={() => {settingSign("+")}}>+</button>
+                <button onClick={() => {settingSign("-")}}>-</button>
+                <button onClick={() => {settingSign("*")}}>*</button>
+                <button onClick={() => {settingSign("÷")}}>÷</button>
+              </div>
+            </div>
+    
+            <div className="panel">
+              <p>{secondNum}</p>
+              <div className="numbers">
+                <button onClick={() => {setSecondNumber(1)}}>1</button>
+                <button onClick={() => {setSecondNumber(2)}}>2</button>
+                <button onClick={() => {setSecondNumber(3)}}>3</button>
+                <button onClick={() => {setSecondNumber(4)}}>4</button>
+                <button onClick={() => {setSecondNumber(5)}}>5</button>
+                <button onClick={() => {setSecondNumber(6)}}>6</button>
+                <button onClick={() => {setSecondNumber(7)}}>7</button>
+                <button onClick={() => {setSecondNumber(8)}}>8</button>
+                <button onClick={() => {setSecondNumber(9)}}>9</button>
+                <button onClick={() => {setSecondNumber(0)}}>0</button>
+                <button onClick={() => {setSecondNumber(0)}}>Clear</button>
+              </div>
+            </div>
 
-        <div className="panel">
-          <p>{}</p>
-          <div className="numbers">
-            { createDigits() }
-            <button>0</button>
-            <button>.</button>
-            <button>Clear</button>
-          </div>
-        </div>
-
-        <div className="panel answer">
-          <p> {result || 0} </p>
-          <div>
-            <button onClick={() => calculate}>=</button>
-          </div>
-        </div>
+            <div className="panel answer">
+              <p>0</p>
+              <div>
+                <button>=</button>
+              </div>
+            </div>
     </div>
   )
 }
